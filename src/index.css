@@ -9,59 +9,109 @@
   box-sizing: border-box;
 }
 
-/* ================= ROOT FIX ================= */
+/* ================= ROOT ================= */
 html,
 body,
 #root {
   width: 100%;
-  max-width: 100%;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* 🔥 CRITICAL FIX */
+  overflow-x: hidden;
 }
 
 /* ================= BODY ================= */
 body {
+  margin: 0;
+  padding: 0;
   background: #0B0F19;
   color: white;
   font-family: sans-serif;
 }
 
-/* ================= IMAGE FIX ================= */
-img {
+/* ================= MEDIA ================= */
+img,
+video {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
-/* ================= MARQUEE FIX ================= */
+/* ================= FLEX FIX ================= */
+.flex > * {
+  min-width: 0;
+}
+
+/* ================= TEXT FIX ================= */
+* {
+  word-wrap: break-word;
+}
+
+/* ================= MARQUEE ================= */
+.marquee {
+  display: flex;
+  gap: 40px;
+  white-space: nowrap;
+  animation: marquee 15s linear infinite;
+}
+
+.marquee-container {
+  width: 100%;
+  overflow: hidden;
+}
+
 @keyframes marquee {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(-50%);
   }
 }
 
 .animate-marquee {
-  position: absolute; /* 🔥 prevents layout breaking */
-  white-space: nowrap;
-  animation: marquee 18s linear infinite;
+  display: flex;
+  width: max-content;
+  animation: marquee 20s linear infinite;
 }
 
-/* ================= SAFETY FIX ================= */
-/* Prevent ANY element from breaking layout */
-* {
-  max-width: 100%;
-}
-
-/* ================= OPTIONAL SMOOTHNESS ================= */
+/* ================= BUTTON ================= */
 button {
   cursor: pointer;
 }
+/* ===== PERFECT TICKER ===== */
 
-a {
-  text-decoration: none;
-  color: inherit;
+.ticker-wrapper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: tickerMove 20s linear infinite;
+}
+
+/* Single line, no break */
+.ticker-item {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 0 20px;
+  font-size: 12px;
+  color: #d1d5db;
+}
+
+/* Mobile typography */
+@media (min-width: 640px) {
+  .ticker-item {
+    font-size: 14px;
+    padding: 0 28px;
+  }
+}
+
+/* Smooth infinite scroll */
+@keyframes tickerMove {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }

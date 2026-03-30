@@ -41,16 +41,22 @@ const scrollToSection = (id) => {
   return (
     <>
       {/* ================= TOP TICKER ================= */}
-      <div className="fixed top-0 left-0 w-full bg-black border-b border-white/10 z-[60] overflow-hidden h-10 flex items-center">
-        <div className="flex whitespace-nowrap animate-marquee gap-10 px-4">
-          {[...tickerData, ...tickerData].map((item, i) => (
-            <span key={i} className="text-sm text-gray-300">
-              {item}
-            </span>
-          ))}
-        </div>
-      </div>
+  {/* ===== TOP TICKER ===== */}
+<div className="fixed top-0 left-0 w-full h-9 bg-black border-b border-white/10 z-[60] overflow-hidden flex items-center">
 
+  <div className="ticker-wrapper">
+    <div className="ticker-track">
+
+      {[...tickerData, ...tickerData].map((item, i) => (
+        <span key={i} className="ticker-item">
+          {item}
+        </span>
+      ))}
+
+    </div>
+  </div>
+
+</div>
       {/* ================= HEADER ================= */}
       <div className="w-full bg-[#060B1A] px-4 md:px-10 py-4 flex items-center justify-between fixed top-10 z-50">
 
